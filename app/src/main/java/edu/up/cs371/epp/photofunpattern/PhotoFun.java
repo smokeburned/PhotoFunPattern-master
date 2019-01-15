@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
         import android.widget.ImageView;
         import android.widget.Button;
         import android.view.View;
+import android.widget.TextView;
 
 /**
  *  class PhotoFun controls this photo manipulation app.
@@ -22,6 +23,7 @@ public class PhotoFun extends AppCompatActivity {
     // Image resources
     private Bitmap myOriginalBmp;
     private ImageView myNewImageView;
+    private TextView modifiedType;
 
     /*
     * onCreate This constructor lays out the user interface, initializes the
@@ -44,6 +46,8 @@ public class PhotoFun extends AppCompatActivity {
 
         Button grayFilterButton =
                 (Button) findViewById(R.id.grayFilterButton);
+        modifiedType = (TextView) findViewById(R.id.textView4);
+
         grayFilterButton.setOnClickListener(new grayFilterButtonListener());
         Button brightnessFilterButton =
                 (Button) findViewById(R.id.brightnessFilterButton);
@@ -59,8 +63,11 @@ public class PhotoFun extends AppCompatActivity {
         public void onClick(View button) {
             GrayFilter filter = new GrayFilter();
             myNewImageView.setImageBitmap(filter.apply(myOriginalBmp));
+            modifiedType.setText("Gray Scaled");
         }
     }
+
+
 
     /*
     * class grayFilterButtonListener this inner class defines the action for the
@@ -72,6 +79,7 @@ public class PhotoFun extends AppCompatActivity {
         public void onClick(View button) {
             BrightnessFilter filter = new BrightnessFilter();
             myNewImageView.setImageBitmap(filter.apply(myOriginalBmp));
+            modifiedType.setText("Brightened");
         }
     }
 }
